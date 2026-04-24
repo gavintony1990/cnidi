@@ -38,6 +38,7 @@
 - `.claude/rules/java/java-coding-rules.md`
 - `.claude/rules/java/java-springboot-rules.md`
 - `.claude/rules/java/java-maven-modular-rules.md`
+- `.claude/rules/java/java-algorithm-design-rules.md`
 
 ## Go 后端任务
 

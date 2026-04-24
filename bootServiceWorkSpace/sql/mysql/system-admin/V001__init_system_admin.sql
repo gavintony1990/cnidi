@@ -1,0 +1,97 @@
+CREATE DATABASE IF NOT EXISTS `cnidi_system_admin`
+  DEFAULT CHARACTER SET utf8mb4
+  DEFAULT COLLATE utf8mb4_0900_ai_ci;
+
+USE `cnidi_system_admin`;
+
+CREATE TABLE IF NOT EXISTS `sys_role` (
+  `id` BIGINT NOT NULL,
+  `role_code` VARCHAR(64) NOT NULL,
+  `role_name` VARCHAR(64) NOT NULL,
+  `status` VARCHAR(32) NOT NULL,
+  `remark` VARCHAR(255) DEFAULT NULL,
+  `create_by` VARCHAR(64) DEFAULT NULL,
+  `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_by` VARCHAR(64) DEFAULT NULL,
+  `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deleted` TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_sys_role_role_code` (`role_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='角色表';
+
+CREATE TABLE IF NOT EXISTS `sys_permission` (
+  `id` BIGINT NOT NULL,
+  `permission_code` VARCHAR(128) NOT NULL,
+  `permission_name` VARCHAR(128) NOT NULL,
+  `resource_type` VARCHAR(32) NOT NULL,
+  `remark` VARCHAR(255) DEFAULT NULL,
+  `create_by` VARCHAR(64) DEFAULT NULL,
+  `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_by` VARCHAR(64) DEFAULT NULL,
+  `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deleted` TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_sys_permission_code` (`permission_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='权限点表';
+
+CREATE TABLE IF NOT EXISTS `sys_user_role` (
+  `id` BIGINT NOT NULL,
+  `user_id` BIGINT NOT NULL,
+  `role_id` BIGINT NOT NULL,
+  `create_by` VARCHAR(64) DEFAULT NULL,
+  `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_by` VARCHAR(64) DEFAULT NULL,
+  `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deleted` TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_sys_user_role_user_role` (`user_id`, `role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户角色关系表';
+
+CREATE TABLE IF NOT EXISTS `sys_role_permission` (
+  `id` BIGINT NOT NULL,
+  `role_id` BIGINT NOT NULL,
+  `permission_id` BIGINT NOT NULL,
+  `create_by` VARCHAR(64) DEFAULT NULL,
+  `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_by` VARCHAR(64) DEFAULT NULL,
+  `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deleted` TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_sys_role_permission_role_permission` (`role_id`, `permission_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='角色权限关系表';
+
+CREATE TABLE IF NOT EXISTS `sys_menu` (
+  `id` BIGINT NOT NULL,
+  `parent_id` BIGINT NOT NULL DEFAULT 0,
+  `menu_name` VARCHAR(64) NOT NULL,
+  `menu_type` VARCHAR(32) NOT NULL,
+  `route_path` VARCHAR(255) DEFAULT NULL,
+  `component` VARCHAR(255) DEFAULT NULL,
+  `icon` VARCHAR(128) DEFAULT NULL,
+  `permission_code` VARCHAR(128) DEFAULT NULL,
+  `sort_no` INT NOT NULL DEFAULT 0,
+  `visible` TINYINT(1) NOT NULL DEFAULT 1,
+  `status` VARCHAR(32) NOT NULL,
+  `remark` VARCHAR(255) DEFAULT NULL,
+  `create_by` VARCHAR(64) DEFAULT NULL,
+  `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_by` VARCHAR(64) DEFAULT NULL,
+  `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `deleted` TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='菜单表';
+
+CREATE TABLE IF NOT EXISTS `sys_operation_log` (
+  `id` BIGINT NOT NULL,
+  `user_id` BIGINT NOT NULL,
+  `username` VARCHAR(64) NOT NULL,
+  `operation` VARCHAR(128) NOT NULL,
+  `resource_type` VARCHAR(64) NOT NULL,
+  `resource_id` VARCHAR(64) DEFAULT NULL,
+  `request_path` VARCHAR(255) NOT NULL,
+  `request_method` VARCHAR(16) NOT NULL,
+  `success` TINYINT(1) NOT NULL,
+  `error_message` VARCHAR(255) DEFAULT NULL,
+  `operation_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='操作日志表';

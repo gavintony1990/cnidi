@@ -1,0 +1,44 @@
+server:
+  port: ${GATEWAY_PORT:8080}
+
+spring:
+  application:
+    name: cnidi-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+      routes:
+        - id: cnidi-auth-service
+          uri: lb://cnidi-auth-service
+          predicates:
+            - Path=/api/auth/**
+        - id: cnidi-admin-system
+          uri: lb://cnidi-admin
+          predicates:
+            - Path=/api/system/**
+        - id: cnidi-admin-admin
+          uri: lb://cnidi-admin
+          predicates:
+            - Path=/api/admin/**
+        - id: cnidi-ai-service
+          uri: lb://cnidi-ai-service
+          predicates:
+            - Path=/internal/ai/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+cnidi:
+  security:
+    jwt:
+      secret: ${CNIDI_JWT_SECRET:cnidi-jwt-secret-key-change-before-production-1234567890}
+      access-token-expire-minutes: ${CNIDI_JWT_ACCESS_TOKEN_EXPIRE_MINUTES:30}
+      refresh-token-expire-days: ${CNIDI_JWT_REFRESH_TOKEN_EXPIRE_DAYS:7}

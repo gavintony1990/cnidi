@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(scripts/deepseek-codex.local.sh *)"
+    ]
+  },
+  "env": {
+    "DEEPSEEK_MODEL": "deepseek-chat"
+  }
+}

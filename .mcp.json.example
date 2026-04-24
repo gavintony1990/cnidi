@@ -1,16 +1,1 @@
-{
-  "mcpServers": {
-    "github": {
-      "type": "http",
-      "url": "${GITHUB_MCP_URL:-https://api.githubcopilot.com/mcp/}"
-    },
-    "project-docs": {
-      "type": "stdio",
-      "command": "${PROJECT_DOCS_MCP_COMMAND:-/usr/local/bin/project-docs-mcp}",
-      "args": [],
-      "env": {
-        "DOCS_ROOT": "${PROJECT_DOCS_ROOT:-./.claude/docs}"
-      }
-    }
-  }
-}
+.claude/mcp/mcp.json.example
