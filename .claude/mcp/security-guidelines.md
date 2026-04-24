@@ -9,9 +9,9 @@
 
 ## 配置规则
 
-- 项目共享服务器定义放 `.mcp.json`
-- 项目共享 settings 放 `.claude/settings.json`
-- 本地个人覆盖放 `.claude/settings.local.json`
+- MCP 配置模板统一放 `.claude/mcp/`
+- 运行时兼容入口保留 `.mcp.json` 与 `.claude/settings*.json` 软链
+- 本地个人覆盖实际内容放 `.claude/mcp/settings.local.json`
 - 真实凭据放本地环境变量、系统 keychain 或平台 OAuth，不放仓库
 
 ## 推荐权限策略

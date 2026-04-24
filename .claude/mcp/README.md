@@ -6,18 +6,17 @@
 
 结合 Claude Code 官方文档与 MCP 官方规范，当前项目推荐采用以下方式：
 
-- **项目共享 MCP 服务器**：放在项目根目录 `.mcp.json`
-- **团队共享 Claude Code 设置**：放在 `.claude/settings.json`
-- **个人本地覆盖**：放在 `.claude/settings.local.json`
+- **仓库内 MCP 配置模板**：统一放在 `.claude/mcp/`
+- **Claude 运行时兼容入口**：保留 `.mcp.json` 或 `.claude/settings*.json` 旧路径软链
+- **个人本地覆盖实际内容**：统一存放在 `.claude/mcp/settings.local.json`
 - **不要把真实 token、client secret、数据库密码提交到仓库**
 
 ## 为什么这样设计
 
-根据 Claude Code 官方设置文档：
+根据 Claude Code 官方设置文档，Claude 运行时默认读取根目录 `.mcp.json` 和 `.claude/settings*.json`。当前仓库采用“目录收敛 + 兼容软链”方式：
 
-- 项目级 MCP 服务器应存放在根目录 `.mcp.json`
-- 项目共享设置应存放在 `.claude/settings.json`
-- 本地个人设置应放在 `.claude/settings.local.json`
+- MCP 配置模板实际放在 `.claude/mcp/`
+- Claude 需要的默认路径保留为软链入口
 - MCP 服务器支持 `stdio` 和 `http` 两类接入方式
 - `.mcp.json` 支持环境变量展开，适合团队共享配置而不提交密钥
 
@@ -56,10 +55,14 @@
 
 ## 项目内推荐文件
 
-- `.mcp.json.example`
+- `.claude/mcp/mcp.json.example`
   - 项目级 MCP 服务器示例
-- `.claude/settings.example.json`
+- `.claude/mcp/settings.example.json`
   - 项目级 Claude Code 设置示例
+- `.claude/mcp/settings.local.example.json`
+  - 本地 Claude 设置示例
+- `.claude/mcp/settings.local.json`
+  - 本机实际本地配置，已加入忽略规则
 - `.claude/mcp/server-catalog.md`
   - 项目推荐 MCP 服务器目录
 - `.claude/mcp/security-guidelines.md`

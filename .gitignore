@@ -22,3 +22,11 @@ target/
 .env
 .env.*
 !.env.example
+
+# Claude local settings
+.claude/settings.local.json
+.claude/mcp/settings.local.json
+
+# Local helper scripts
+scripts/*.local.sh
+bin/
