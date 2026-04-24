@@ -1,6 +1,6 @@
 # API Contract
 
-本文件是天工联项目跨工程接口契约的统一入口。当前内容仍是项目初始化阶段模板，后续所有跨端接口都必须在这里登记。
+本文件是天工联项目跨工程接口契约的统一入口。所有跨端接口必须在这里登记。
 
 ## 契约规则
 
@@ -24,7 +24,7 @@
 ```json
 {
   "data": {},
-  "requestId": "req_123"
+  "requestId": "uuid"
 }
 ```
 
@@ -33,21 +33,70 @@
 ```json
 {
   "error": {
-    "code": "FORBIDDEN",
-    "message": "Permission denied",
+    "code": "UNAUTHORIZED",
+    "message": "账号或密码错误",
     "details": [],
-    "requestId": "req_123"
-  }
+    "requestId": "uuid"
+  },
+  "requestId": "uuid"
 }
 ```
 
-## 初始接口分组
+---
 
-### Auth
+## Auth 模块（已实现）
 
-- `POST /api/auth/login`
-- `POST /api/auth/logout`
-- `GET /api/auth/me`
+### POST /api/auth/login
+
+- **Auth**：无
+- **Request Body**：
+  ```json
+  { "username": "admin", "password": "Admin@123456" }
+  ```
+- **Response 200**：
+  ```json
+  { "data": { "token": "eyJ...", "expiresIn": 86400 }, "requestId": "uuid" }
+  ```
+- **Error**：
+  - `401 UNAUTHORIZED` — 账号或密码错误（账号不存在/密码错误统一返回，防止枚举）
+  - `401 UNAUTHORIZED` — 账号已被禁用
+  - `400 VALIDATION_ERROR` — username 或 password 为空
+- **使用方**：`webAdminServiceWorkSpace`
+- **实现**：`AuthController.login` → `AuthService.login` → `SysUserMapper` + BCrypt 校验 + JWT 签发
+- **兼容性**：新增接口，无影响
+
+---
+
+### POST /api/auth/logout
+
+- **Auth**：Bearer token（有效 token 才调，无 token 也可通过）
+- **Request Body**：无
+- **Response 200**：
+  ```json
+  { "data": null, "requestId": "uuid" }
+  ```
+- **使用方**：`webAdminServiceWorkSpace`
+- **实现**：JWT 无状态，后端无操作，前端清除 localStorage token
+- **兼容性**：新增接口，无影响
+
+---
+
+### GET /api/auth/me
+
+- **Auth**：Bearer token（必须）
+- **Response 200**：
+  ```json
+  { "data": { "id": 1, "username": "admin", "roles": ["ADMIN"] }, "requestId": "uuid" }
+  ```
+- **Error**：
+  - `401 UNAUTHORIZED` — token 无效、过期或未携带
+- **使用方**：`webAdminServiceWorkSpace`
+- **实现**：`AuthController.me` → `AuthService.getCurrentUser`，从 JWT 上下文中解析用户信息
+- **兼容性**：新增接口，无影响
+
+---
+
+## 初始接口分组（待实现）
 
 ### Admin - Users
 
