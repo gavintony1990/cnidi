@@ -1,0 +1,25 @@
+server:
+  port: ${AI_SERVICE_PORT:8083}
+
+spring:
+  application:
+    name: cnidi-ai-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_SERVER_ADDR:127.0.0.1:8848}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+dubbo:
+  application:
+    name: cnidi-ai-service
+  protocol:
+    name: tri
+    port: ${DUBBO_AI_PORT:50053}
+  registry:
+    address: nacos://${NACOS_SERVER_ADDR:127.0.0.1:8848}
