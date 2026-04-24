@@ -157,11 +157,11 @@
 - 当前阶段默认只允许创建 `NORMAL` 类型用户
 - admin 用户不走该接口创建
 
-#### `POST /api/auth/login`
+#### `POST /api/auth/login` ✅ 已实现（webAdminServiceWorkSpace + bootServiceWorkSpace）
 
 - auth requirement：无
 - `WebServiceWorkSpace`：预留
-- `webAdminServiceWorkSpace`：预留
+- `webAdminServiceWorkSpace`：已实现（LoginPage + authApi）
 - `bootServiceWorkSpace`：`com.cnidi.system.core.auth`
 
 请求体：
@@ -209,11 +209,11 @@
 - 当前阶段账号字段统一使用 `username`
 - 后续如果支持手机号、邮箱登录，需要补充登录方式字段并更新本契约
 
-#### `POST /api/auth/logout`
+#### `POST /api/auth/logout` ✅ 已实现（webAdminServiceWorkSpace + bootServiceWorkSpace）
 
 - auth requirement：已登录
 - `WebServiceWorkSpace`：预留
-- `webAdminServiceWorkSpace`：预留
+- `webAdminServiceWorkSpace`：已实现（DashboardPage 退出登录）
 - `bootServiceWorkSpace`：`com.cnidi.system.core.auth`
 
 请求体：
@@ -272,11 +272,11 @@
 
 - `UNAUTHORIZED`：refresh token 无效、已撤销或已过期
 
-#### `GET /api/auth/me`
+#### `GET /api/auth/me` ✅ 已实现（bootServiceWorkSpace）
 
 - auth requirement：已登录
 - `WebServiceWorkSpace`：预留
-- `webAdminServiceWorkSpace`：预留
+- `webAdminServiceWorkSpace`：已接入（authApi.me）
 - `bootServiceWorkSpace`：`com.cnidi.system.core.auth`
 
 响应体：
