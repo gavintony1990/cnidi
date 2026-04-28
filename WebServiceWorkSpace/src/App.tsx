@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
+import IndustryPage from "./pages/IndustryPage";
+import AboutPage from "./pages/AboutPage";
 import PrivateRoute from "./components/PrivateRoute";
 
 export default function App() {
@@ -16,6 +18,22 @@ export default function App() {
           element={
             <PrivateRoute>
               <HomePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/industry"
+          element={
+            <PrivateRoute>
+              <IndustryPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <PrivateRoute>
+              <AboutPage />
             </PrivateRoute>
           }
         />
