@@ -10,6 +10,8 @@ import com.cnidi.system.core.auth.dto.LoginResponse;
 import com.cnidi.system.core.auth.dto.LogoutResponse;
 import com.cnidi.system.core.auth.dto.MeResponse;
 import com.cnidi.system.core.auth.dto.RefreshTokenRequest;
+import com.cnidi.system.core.auth.dto.RegisterRequest;
+import com.cnidi.system.core.auth.dto.RegisterResponse;
 import com.cnidi.system.core.auth.entity.SysLoginLogEntity;
 import com.cnidi.system.core.auth.entity.SysRefreshTokenEntity;
 import com.cnidi.system.core.auth.entity.SysUserCredentialEntity;
@@ -27,6 +29,7 @@ import java.util.HexFormat;
 import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AuthService {
@@ -123,6 +126,50 @@ public class AuthService {
                 rolesFor(user),
                 permissionsFor(user)
         );
+    }
+
+    @Transactional
+    public RegisterResponse register(RegisterRequest request) {
+        boolean usernameExists = sysUserMapper.selectCount(new LambdaQueryWrapper<SysUserEntity>()
+                .eq(SysUserEntity::getUsername, request.username())) > 0;
+        if (usernameExists) {
+            throw new BaseException(ErrorCode.CONFLICT, "用户名已存在");
+        }
+
+        if (request.mobile() != null && !request.mobile().isBlank()) {
+            boolean mobileExists = sysUserMapper.selectCount(new LambdaQueryWrapper<SysUserEntity>()
+                    .eq(SysUserEntity::getMobile, request.mobile())) > 0;
+            if (mobileExists) {
+                throw new BaseException(ErrorCode.CONFLICT, "手机号已存在");
+            }
+        }
+
+        if (request.email() != null && !request.email().isBlank()) {
+            boolean emailExists = sysUserMapper.selectCount(new LambdaQueryWrapper<SysUserEntity>()
+                    .eq(SysUserEntity::getEmail, request.email())) > 0;
+            if (emailExists) {
+                throw new BaseException(ErrorCode.CONFLICT, "邮箱已存在");
+            }
+        }
+
+        SysUserEntity user = new SysUserEntity();
+        user.setUsername(request.username());
+        user.setNickname(request.nickname() != null && !request.nickname().isBlank()
+                ? request.nickname() : request.username());
+        user.setMobile(request.mobile());
+        user.setEmail(request.email());
+        user.setUserType("NORMAL");
+        user.setStatus("ENABLED");
+        sysUserMapper.insert(user);
+
+        SysUserCredentialEntity credential = new SysUserCredentialEntity();
+        credential.setUserId(user.getId());
+        credential.setCredentialType("PASSWORD");
+        credential.setPasswordHash(passwordEncoder.encode(request.password()));
+        credential.setPasswordVersion(1);
+        sysUserCredentialMapper.insert(credential);
+
+        return new RegisterResponse(user.getId(), user.getUsername(), user.getStatus());
     }
 
     private LoginResponse buildLoginResponse(SysUserEntity user, String ip, String userAgent) {

@@ -8,6 +8,8 @@ import com.cnidi.system.core.auth.dto.LogoutRequest;
 import com.cnidi.system.core.auth.dto.LogoutResponse;
 import com.cnidi.system.core.auth.dto.MeResponse;
 import com.cnidi.system.core.auth.dto.RefreshTokenRequest;
+import com.cnidi.system.core.auth.dto.RegisterRequest;
+import com.cnidi.system.core.auth.dto.RegisterResponse;
 import com.cnidi.system.core.auth.service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -47,5 +49,10 @@ public class AuthController {
     public ApiResponse<MeResponse> me(Authentication authentication) {
         AuthenticatedUser user = (AuthenticatedUser) authentication.getPrincipal();
         return ApiResponse.success(authService.me(user.userId()));
+    }
+
+    @PostMapping("/register")
+    public ApiResponse<RegisterResponse> register(@Valid @RequestBody RegisterRequest request) {
+        return ApiResponse.success(authService.register(request));
     }
 }

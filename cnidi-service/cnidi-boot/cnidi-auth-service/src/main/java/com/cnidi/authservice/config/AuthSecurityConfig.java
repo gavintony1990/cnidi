@@ -32,7 +32,7 @@ public class AuthSecurityConfig {
                 .cors(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/actuator/**", "/api/auth/login", "/api/auth/refresh").permitAll()
+                        .requestMatchers("/actuator/**", "/api/auth/login", "/api/auth/refresh", "/api/auth/register").permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(exception -> exception
                         .authenticationEntryPoint((request, response, authException) -> {

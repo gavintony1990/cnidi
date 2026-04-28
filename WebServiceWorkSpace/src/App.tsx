@@ -1,14 +1,27 @@
+import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import HomePage from "./pages/HomePage";
+import PrivateRoute from "./components/PrivateRoute";
+
 export default function App() {
   return (
-    <main className="page">
-      <section className="panel">
-        <p className="eyebrow">cnidi</p>
-        <h1>天工联项目用户端最小骨架已初始化</h1>
-        <p className="description">
-          当前仅提供最小可运行的 React + Vite 结构，后续按业务需求继续接入路由、状态管理、API
-          封装和页面模块。
-        </p>
-      </section>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route
+          path="/home"
+          element={
+            <PrivateRoute>
+              <HomePage />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="*" element={<Navigate to="/home" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
