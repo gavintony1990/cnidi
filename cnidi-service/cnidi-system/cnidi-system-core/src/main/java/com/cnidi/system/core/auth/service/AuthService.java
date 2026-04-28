@@ -7,6 +7,7 @@ import com.cnidi.common.security.AuthenticatedUser;
 import com.cnidi.common.security.JwtTokenProvider;
 import com.cnidi.system.core.auth.dto.LoginRequest;
 import com.cnidi.system.core.auth.dto.LoginResponse;
+import com.cnidi.system.core.auth.dto.LogoutResponse;
 import com.cnidi.system.core.auth.dto.MeResponse;
 import com.cnidi.system.core.auth.dto.RefreshTokenRequest;
 import com.cnidi.system.core.auth.entity.SysLoginLogEntity;
@@ -97,6 +98,19 @@ public class AuthService {
 
         SysUserEntity user = requireUser(userId);
         return buildLoginResponse(user, ip, userAgent);
+    }
+
+    public LogoutResponse logout(String refreshToken) {
+        SysRefreshTokenEntity stored = sysRefreshTokenMapper.selectOne(
+                new LambdaQueryWrapper<SysRefreshTokenEntity>()
+                        .eq(SysRefreshTokenEntity::getTokenHash, hashToken(refreshToken))
+                        .eq(SysRefreshTokenEntity::getRevoked, 0));
+        if (stored != null) {
+            stored.setRevoked(1);
+            stored.setLastUsedAt(LocalDateTime.now());
+            sysRefreshTokenMapper.updateById(stored);
+        }
+        return new LogoutResponse(true);
     }
 
     public MeResponse me(Long userId) {

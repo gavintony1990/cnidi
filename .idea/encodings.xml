@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/bootServiceWorkSpace/cnidi-boot/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/bootServiceWorkSpace/cnidi-boot/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-boot/cnidi-admin-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-boot/cnidi-admin-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-boot/cnidi-ai-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-boot/cnidi-ai-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-boot/cnidi-api-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-boot/cnidi-api-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-boot/cnidi-auth-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-boot/cnidi-auth-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-boot/cnidi-file-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-boot/cnidi-file-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-boot/cnidi-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-boot/cnidi-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-boot/cnidi-user-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-boot/cnidi-user-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-boot/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-boot/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-system/cnidi-ai/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-system/cnidi-ai/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-system/cnidi-auth-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-system/cnidi-auth-service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-system/cnidi-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-system/cnidi-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-system/cnidi-dependencies/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-system/cnidi-dependencies/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-system/cnidi-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-system/cnidi-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-system/cnidi-system-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-system/cnidi-system-core/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-system/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/cnidi-system/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cnidi-service/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

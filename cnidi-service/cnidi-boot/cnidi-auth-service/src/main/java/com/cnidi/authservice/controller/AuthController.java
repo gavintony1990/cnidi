@@ -4,6 +4,8 @@ import com.cnidi.common.api.ApiResponse;
 import com.cnidi.common.security.AuthenticatedUser;
 import com.cnidi.system.core.auth.dto.LoginRequest;
 import com.cnidi.system.core.auth.dto.LoginResponse;
+import com.cnidi.system.core.auth.dto.LogoutRequest;
+import com.cnidi.system.core.auth.dto.LogoutResponse;
 import com.cnidi.system.core.auth.dto.MeResponse;
 import com.cnidi.system.core.auth.dto.RefreshTokenRequest;
 import com.cnidi.system.core.auth.service.AuthService;
@@ -34,6 +36,11 @@ public class AuthController {
     @PostMapping("/refresh")
     public ApiResponse<LoginResponse> refresh(@Valid @RequestBody RefreshTokenRequest request, HttpServletRequest httpServletRequest) {
         return ApiResponse.success(authService.refresh(request, httpServletRequest.getRemoteAddr(), httpServletRequest.getHeader("User-Agent")));
+    }
+
+    @PostMapping("/logout")
+    public ApiResponse<LogoutResponse> logout(@Valid @RequestBody LogoutRequest request) {
+        return ApiResponse.success(authService.logout(request.refreshToken()));
     }
 
     @GetMapping("/me")

@@ -13,7 +13,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(scanBasePackages = {
         "com.cnidi.common",
         "com.cnidi.dependencies",
-        "com.cnidi.system.core.auth"
+        "com.cnidi.system.core.auth",
+        "com.cnidi.authservice"
 })
 public class AuthServiceApplication {
 

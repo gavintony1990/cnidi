@@ -15,6 +15,11 @@
     <dependencies>
         <dependency>
             <groupId>com.cnidi</groupId>
+            <artifactId>cnidi-api-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cnidi</groupId>
             <artifactId>cnidi-system-core</artifactId>
             <version>${project.version}</version>
         </dependency>

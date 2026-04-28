@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: cnidi-admin
+    name: cnidi-admin-service
   datasource:
     url: ${CNIDI_ADMIN_DB_URL:jdbc:mysql://127.0.0.1:3306/cnidi_system_admin?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&characterEncoding=utf8}
     username: ${CNIDI_ADMIN_DB_USERNAME:root}
@@ -29,7 +29,7 @@ mybatis-plus:
 
 dubbo:
   application:
-    name: cnidi-admin
+    name: cnidi-admin-service
   protocol:
     name: tri
     port: ${DUBBO_CNIDI_ADMIN_PORT:50052}

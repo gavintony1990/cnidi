@@ -183,16 +183,12 @@
     "accessTokenExpiresAt": "2026-04-24T21:00:00",
     "refreshToken": "refresh-token",
     "refreshTokenExpiresAt": "2026-05-01T20:00:00",
-    "user": {
-      "id": 1,
-      "username": "admin",
-      "nickname": "系统管理员",
-      "userType": "ADMIN",
-      "status": "ENABLED"
-    },
-    "roles": ["SUPER_ADMIN"],
-    "permissions": ["user:read", "user:create", "role:grant"],
-    "menus": []
+    "userId": 1,
+    "username": "admin",
+    "nickname": "系统管理员",
+    "userType": "ADMIN",
+    "roles": ["ADMIN"],
+    "permissions": ["*"]
   },
   "requestId": "req_123"
 }
@@ -284,18 +280,12 @@
 ```json
 {
   "data": {
-    "user": {
-      "id": 1,
-      "username": "admin",
-      "nickname": "系统管理员",
-      "mobile": "13800000000",
-      "email": "admin@cnidi.com",
-      "userType": "ADMIN",
-      "status": "ENABLED"
-    },
-    "roles": ["SUPER_ADMIN"],
-    "permissions": ["user:read", "user:create", "role:grant"],
-    "menus": []
+    "userId": 1,
+    "username": "admin",
+    "nickname": "系统管理员",
+    "userType": "ADMIN",
+    "roles": ["ADMIN"],
+    "permissions": ["*"]
   },
   "requestId": "req_123"
 }
@@ -344,8 +334,8 @@
 
 - auth requirement：已登录 + `user:read`
 - `WebServiceWorkSpace`：否
-- `webAdminServiceWorkSpace`：预留
-- `bootServiceWorkSpace`：`com.cnidi.system.core.admin`
+- `webAdminServiceWorkSpace`：已实现（AdminUsersPage + adminUsersApi）
+- `bootServiceWorkSpace`：`cnidi-admin-service` 暴露 HTTP 接口，`cnidi-auth-service` 通过 Dubbo 提供用户分页查询
 
 查询参数：
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cnidi-gateway" />
+        <module name="cnidi-auth-service" />
+        <module name="cnidi-dependencies" />
+        <module name="cnidi-common" />
+        <module name="cnidi-api-service" />
+        <module name="cnidi-admin-service" />
+        <module name="cnidi-file-service" />
+        <module name="cnidi-user-service" />
+        <module name="cnidi-system-core" />
+        <module name="cnidi-ai-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cnidi-ai" target="1.5" />
+      <module name="cnidi-auth-service (1)" target="21" />
+      <module name="cnidi-file (1)" target="1.5" />
+      <module name="cnidi-gateway (1)" target="21" />
+      <module name="cnidi-system-admin-service" target="21" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

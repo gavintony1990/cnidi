@@ -8,7 +8,7 @@ interface Props {
 
 export default function PrivateRoute({ children }: Props) {
   const location = useLocation();
-  if (!tokenStorage.exists()) {
+  if (!tokenStorage.hasAccessToken()) {
     return <Navigate to="/login" state={{ from: location.pathname }} replace />;
   }
   return <>{children}</>;

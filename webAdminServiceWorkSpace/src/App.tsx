@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
+import AdminUsersPage from "./pages/AdminUsersPage";
 import PrivateRoute from "./components/PrivateRoute";
 
 export default function App() {
@@ -14,6 +15,14 @@ export default function App() {
           element={
             <PrivateRoute>
               <DashboardPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin/users"
+          element={
+            <PrivateRoute>
+              <AdminUsersPage />
             </PrivateRoute>
           }
         />

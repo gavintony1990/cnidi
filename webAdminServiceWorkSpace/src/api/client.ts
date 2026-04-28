@@ -8,7 +8,7 @@ const client = axios.create({
 });
 
 client.interceptors.request.use((config) => {
-  const token = tokenStorage.get();
+  const token = tokenStorage.getAccessToken();
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -20,7 +20,9 @@ client.interceptors.response.use(
   (err) => {
     if (err.response?.status === 401) {
       tokenStorage.clear();
-      window.location.href = "/login";
+      if (window.location.pathname !== "/login") {
+        window.location.href = "/login";
+      }
     }
     return Promise.reject(err);
   }

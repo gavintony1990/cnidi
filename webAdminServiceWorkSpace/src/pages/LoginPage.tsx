@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button, Card, Form, Input, Typography, Alert } from "antd";
 import { authApi } from "../api/auth";
@@ -19,12 +19,18 @@ export default function LoginPage() {
 
   const from = (location.state as { from?: string })?.from ?? "/";
 
+  useEffect(() => {
+    if (tokenStorage.hasAccessToken()) {
+      navigate(from, { replace: true });
+    }
+  }, [from, navigate]);
+
   const handleLogin = async (values: LoginFormValues) => {
     setLoading(true);
     setError(null);
     try {
-      const { token } = await authApi.login(values);
-      tokenStorage.set(token);
+      const response = await authApi.login(values);
+      tokenStorage.setTokens(response.accessToken, response.refreshToken);
       navigate(from, { replace: true });
     } catch (err: unknown) {
       const msg =

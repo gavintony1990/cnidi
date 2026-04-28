@@ -18,11 +18,11 @@ spring:
           predicates:
             - Path=/api/auth/**
         - id: cnidi-admin-system
-          uri: lb://cnidi-admin
+          uri: lb://cnidi-admin-service
           predicates:
             - Path=/api/system/**
         - id: cnidi-admin-admin
-          uri: lb://cnidi-admin
+          uri: lb://cnidi-admin-service
           predicates:
             - Path=/api/admin/**
         - id: cnidi-ai-service
